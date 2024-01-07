@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>Document</title>
+</head>
+<body>
+    <section class="widgets">
+        <div class="date">
+            <h3 id="day"></h3>
+            <p id="numberDay"></p>
+            <p id="month"></p>
+        </div>
+
+        <div class="task-left">
+            <h3>3</h3>
+            <p>Task Left</p>
+        </div>
+
+        <div class="task-done">
+            <h3>3</h3>
+            <p>Task Done</p>
+        </div>
+    </section>
+
+    <section class="create-task">
+        <div id="form">
+            <input type="text" name="task" class="input" id="userInput">
+            <button id="btn"> Create </button>
+        </div>
+    </section>
+
+
+    <section class="tasks-list">
+        <h2 class="todo-heading">To Do</h2>
+        <!-- <div class="task">
+            <span class="material-symbols-outlined" onClick="clickTask" id="unChecked">
+                radio_button_unchecked
+            </span>
+            <p style="margin-left: 20px;" id = taskValue>Test Task</p>
+        </div> -->
+    </section>
+
+    <section class="completed-task">
+        <h2 class="completed-task-heading">Completed</h2>
+        <div class="done-task">
+            <p style="margin-left: 20px;">Test Done</p>
+        </div>
+    </section>
+</body>
+</html>
+<script src="script.js"></script>
