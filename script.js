@@ -1,61 +1,98 @@
-//date
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-
-const months = ["January","February","March","April","May","June","July","August","September", "October","November","December"]
-
+// date
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const months = ["January","February","March","April","May","June","July","August","September", "October","November","December"];
 const d = new Date();
 
 const todayDay = days[d.getDay()];
-
-const todayDayNumber = d.getDate()
-
-const currentMonth = months[d.getMonth()]
+const todayDayNumber = d.getDate();
+const currentMonth = months[d.getMonth()];
 
 document.getElementById("day").innerHTML = todayDay;
-
 document.getElementById("numberDay").innerHTML = todayDayNumber;
-
 document.getElementById("month").innerHTML = currentMonth;
 
-//task
+// task
+const tasksContainer = document.querySelector('.tasks-list');
+document.getElementById("btn").addEventListener("click", createTask);
 
-document.getElementById("btn").addEventListener("click", createTask)
+const compeltedtasksContainer = document.querySelector('.completed-task');
 
-let listOfTask = [];
+let listOfTasks = [];
+
+let completedTask = []
 
 function createTask() {
-    let task = document.getElementById("userInput").value;
-    listOfTask.push(task);
-    console.log(listOfTask);
+    //.trim() ---> removes whitespaces from the ends of string
+    const taskInput = document.getElementById("userInput").value.trim();
 
-    // Get the container outside the loop
-    let container = document.querySelector('.tasks-list');
+    if (taskInput) { //if task input is true
+        listOfTasks.push(taskInput); //add taskInput to listOfTasks array
 
-    // Create a new div element for each task
-    let new_task = document.createElement('div');
-    new_task.classList.add('task');
+        const newTask = createTaskElement(taskInput); //run createTaskElement function with taskInput as a parameter
+        tasksContainer.appendChild(newTask); 
 
-    // Construct the task details HTML for each task
-    let taskDetails = `<div class="task" id="task-div">
-        <span class="material-symbols-outlined" id="unChecked" onClick="removeTask()">
-            radio_button_unchecked
-        </span>
-        <p style="margin-left: 20px;" id = "taskValue">${task}</p>
-    </div>`;
-
-    // Set inner HTML for the new_task div with the task details
-    new_task.insertAdjacentHTML('beforeend', taskDetails);
-
-    // Append the new_task div to the container
-    container.appendChild(new_task);
-    
+        document.getElementById("userInput").value = ""; //Input Box goes back to blank
+    }
 }
 
-function removeTask () {
-    console.log("Clicked")
-    let value = document.getElementById("taskValue").innerHTML
-    let index = listOfTask.indexOf(value)
-    let removedTask = listOfTask.splice(index, 1)
-    let element = document.getElementById("task-div")
-    element.remove();
+function createTaskElement(taskText) {
+    const newTask = document.createElement('div'); //creates task div/container
+    newTask.classList.add('task'); // add class 'task' to div/container
+
+    newTask.innerHTML = `
+        <div class="task-content">
+            <span class="material-symbols-outlined unChecked" onClick="removeTask(this)">
+                radio_button_unchecked
+            </span>
+            <p class="task-value">${taskText}</p>
+        </div>`; //create HTML
+
+    return newTask;
+}
+
+function removeTask(clickedElement) {
+    const taskValue = clickedElement.nextElementSibling.textContent;
+
+    completedTask.push(taskValue);
+
+    const index = listOfTasks.indexOf(taskValue);
+    if (index !== -1) {
+        listOfTasks.splice(index, 1);
+        clickedElement.closest('.task').remove();
+    }
+
+    createCompletedTask(taskValue); // Call createCompletedTask with the taskValue
+}
+
+function createCompletedTask(task) {
+    if (!checkIfDivExists(task)) {
+        const newCompletedTask = createCompeltedTaskElement(task);
+        compeltedtasksContainer.appendChild(newCompletedTask);
+    }
+}
+
+function checkIfDivExists(textToCheck) {
+    const divs = document.querySelectorAll('.completed-task .task-value');
+
+    for (let i = 0; i < divs.length; i++) {
+        if (divs[i].textContent === textToCheck)  {
+            return true;
+        }
+    }
+    return false;
+}
+
+function createCompeltedTaskElement(task) {
+    //store new compelted task div into a varible
+    const newCompletedTask = document.createElement('div');
+
+    //add the class done-task completed task to div
+    newCompletedTask.classList.add('done-task')
+
+    //HTML for the completed task div
+    newCompletedTask.innerHTML = `<div class="task-content">
+            <p class="task-value">${task}</p>
+        </div>`
+
+    return newCompletedTask;
 }

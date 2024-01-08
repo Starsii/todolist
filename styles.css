@@ -55,6 +55,15 @@ button {
     margin: 10px 0px 10px 0px;
 }
 
+.task-content {
+    display: flex;
+    align-items: center;
+}
+
+.task-value {
+    margin-left: 10px;
+}
+
 .todo-heading, .completed-task-heading{
     align-self: flex-start;
     margin: 30px 0px 10px;
