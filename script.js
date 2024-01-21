@@ -7,7 +7,7 @@ const todayDay = days[d.getDay()];
 const todayDayNumber = d.getDate();
 const currentMonth = months[d.getMonth()];
 
-document.getElementById("day").innerHTML = todayDay;
+document.getElementById("day").innerHTML = `${todayDay},`;
 document.getElementById("numberDay").innerHTML = todayDayNumber;
 document.getElementById("month").innerHTML = currentMonth;
 
@@ -21,6 +21,23 @@ let listOfTasks = [];
 
 let completedTask = []
 
+let numberOfTask = 0; // Initialize the count to zero
+let numberOfCompletedTask = 0; // Initialize the count to zero
+
+function updateTaskCounts() {
+    numberOfTask = listOfTasks.length;
+    numberOfCompletedTask = completedTask.length;
+    // Update the display or perform any other actions based on the counts
+    console.log(`Number of tasks: ${numberOfTask}, Number of completed tasks: ${numberOfCompletedTask}`);
+
+    const taskLeftCountHeading = document.getElementById('left-count');
+    taskLeftCountHeading.textContent = `${numberOfTask}`;
+
+    const taskDoneCountHeading = document.getElementById('completed-count')
+    taskDoneCountHeading.textContent = `${numberOfCompletedTask}`
+}
+
+
 function createTask() {
     //.trim() ---> removes whitespaces from the ends of string
     const taskInput = document.getElementById("userInput").value.trim();
@@ -33,6 +50,7 @@ function createTask() {
 
         document.getElementById("userInput").value = ""; //Input Box goes back to blank
     }
+    updateTaskCounts()
 }
 
 function createTaskElement(taskText) {
@@ -62,6 +80,7 @@ function removeTask(clickedElement) {
     }
 
     createCompletedTask(taskValue); // Call createCompletedTask with the taskValue
+    updateTaskCounts()
 }
 
 function createCompletedTask(task) {
@@ -74,8 +93,8 @@ function createCompletedTask(task) {
 function checkIfDivExists(textToCheck) {
     const divs = document.querySelectorAll('.completed-task .task-value');
 
-    for (let i = 0; i < divs.length; i++) {
-        if (divs[i].textContent === textToCheck)  {
+    for (const element of divs) {
+        if (element.textContent === textToCheck)  {
             return true;
         }
     }

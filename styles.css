@@ -12,7 +12,7 @@
     gap: 50px;
 }
 
-.date, .task-left, .task-done {
+ .date ,.task-left, .task-done {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,6 +21,11 @@
     border-radius: 10px;
     width: 150px;
     height: 150px;
+}
+
+.daydisplay{
+    display: flex;
+    flex-direction: row;
 }
 
 .create-task {

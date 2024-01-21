@@ -10,18 +10,20 @@
 <body>
     <section class="widgets">
         <div class="date">
-            <h3 id="day"></h3>
-            <p id="numberDay"></p>
+            <div class="daydisplay">
+                <h3 id="day" class="day"></h3>
+                <p id="numberDay" class="numberDay"></p>
+            </div>
             <p id="month"></p>
         </div>
 
-        <div class="task-left">
-            <h3>3</h3>
+        <div class="task-left" id="task-left">
+            <h3 id ="left-count">0</h3>
             <p>Task Left</p>
         </div>
 
         <div class="task-done">
-            <h3>3</h3>
+            <h3 id="completed-count">0</h3>
             <p>Task Done</p>
         </div>
     </section>
@@ -36,12 +38,6 @@
 
     <section class="tasks-list">
         <h2 class="todo-heading">To Do</h2>
-        <!-- <div class="task">
-            <span class="material-symbols-outlined" onClick="clickTask" id="unChecked">
-                radio_button_unchecked
-            </span>
-            <p style="margin-left: 20px;" id = taskValue>Test Task</p>
-        </div> -->
     </section>
 
     <section class="completed-task">
