@@ -5,6 +5,14 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background-color: black;
+}
+
+h3, p, h2 {
+    color: white;
+}
+
 .widgets {
     display: flex;
     justify-content: center;
@@ -17,8 +25,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #E2E2E2;
     border-radius: 10px;
+    background: var(--Blue-Gradient, radial-gradient(100.93% 53.55% at 50% 50.27%, #3958EF 0%, #9CA8F7 100%));
     width: 150px;
     height: 150px;
 }
@@ -33,14 +41,24 @@
     justify-content: center;
 }
 
+
+
 .input {
-    width: 550px;
-    height: 35px;
+    width: 430px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 20px;
+    background: var(--9CA8F7, #9CA8F7);
+    flex-shrink: 0;
+    color: white;
 }
 
 button {
-    width: 100px;
-    height: 35px;
+    width: 120px;
+    height: 50px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: var(--3958EF, #3958EF);
 }
 
 .tasks-list, .completed-task{
@@ -54,8 +72,9 @@ button {
     display: flex;
     justify-content: start;
     align-items: center;
-    background-color: #E2E2E2;
-    width: 660px;
+    border-radius: 10px;
+    background: #FFF;
+    width: 560px;
     height: 60px;
     margin: 10px 0px 10px 0px;
 }
@@ -67,6 +86,7 @@ button {
 
 .task-value {
     margin-left: 10px;
+    color: black;
 }
 
 .todo-heading, .completed-task-heading{

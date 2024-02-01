@@ -110,6 +110,9 @@ function createCompeltedTaskElement(task) {
 
     //HTML for the completed task div
     newCompletedTask.innerHTML = `<div class="task-content">
+            <span class="material-symbols-outlined">
+                check_circle
+            </span>
             <p class="task-value">${task}</p>
         </div>`
 
